@@ -7,6 +7,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import uz.warcom.tracker.api.tracker.configuration.ApiMapStructConverter
 import uz.warcom.tracker.api.tracker.model.request.FactionRequest
+import uz.warcom.tracker.config.CacheConfig
 import uz.warcom.tracker.domain.entity.Faction
 import uz.warcom.tracker.domain.repository.FactionRepository
 import uz.warcom.tracker.exception.GenericApiException
@@ -31,17 +32,17 @@ class FactionService
         return factionRepository.findByCode(code) ?: throw ResourceNotFoundException(code, Faction::class)
     }
 
-    @Cacheable("factions")
+    @Cacheable(CacheConfig.FACTIONS)
     fun getFactionsTree () : List<Faction> {
         return factionRepository.findAllByParentIsNull()
     }
 
-    @Cacheable("factions")
+    @Cacheable(CacheConfig.FACTIONS)
     fun getFactions () : List<Faction> {
         return factionRepository.findAll()
     }
 
-    @CacheEvict("factions")
+    @CacheEvict(CacheConfig.FACTIONS)
     fun createFaction (factionRequest: FactionRequest): Faction {
         val parent = if (factionRequest.parentCode != null)
             getFaction(factionRequest.parentCode!!)
@@ -53,7 +54,7 @@ class FactionService
         return factionRepository.save(faction)
     }
 
-    @CacheEvict("factions")
+    @CacheEvict(CacheConfig.FACTIONS)
     fun updateFaction (factionRequest: FactionRequest): Faction {
         val faction = getFaction(factionRequest.code)
 

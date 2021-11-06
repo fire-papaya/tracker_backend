@@ -12,8 +12,6 @@ import java.util.concurrent.TimeUnit
 @EnableCaching
 class CacheConfig {
 
-    private val FACTIONS = "factions"
-
     @Bean
     fun factionsCache(): Cache {
         return ConcurrentMapCache(
@@ -23,5 +21,9 @@ class CacheConfig {
                 .build<Any, Any>().asMap(),
             false
         )
+    }
+
+    companion object {
+        const val FACTIONS = "factions"
     }
 }
