@@ -1,43 +1,51 @@
 package uz.warcom.tracker.controller.implementation
 
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import uz.warcom.tracker.api.tracker.configuration.ApiMapStructConverter
 import uz.warcom.tracker.api.tracker.model.request.FactionRequest
 import uz.warcom.tracker.api.tracker.model.response.FactionResponse
+import uz.warcom.tracker.controller.FactionController
 import uz.warcom.tracker.service.FactionService
 
 @RestController
-@RequestMapping("/api/faction")
+@RequestMapping(
+    value = ["/api/faction"],
+    produces = [MediaType.APPLICATION_JSON_VALUE],
+    consumes = [MediaType.APPLICATION_JSON_VALUE]
+)
 class DefaultFactionController
 constructor(
     private val factionService: FactionService,
     private val mapStruct: ApiMapStructConverter
-){
+): FactionController {
 
     @PostMapping
-    fun createFaction (
+    override fun createFaction (
         @RequestBody request: FactionRequest
     ) : FactionResponse {
-        TODO("Not implemented yet")
+        val faction = factionService.createFaction(request)
+        return mapStruct.toFactionResponse(faction)
     }
 
     @PutMapping
-    fun updateFaction (
+    override fun updateFaction (
         @RequestBody request: FactionRequest
     ) : FactionResponse {
-        TODO("Not implemented yet")
+        val faction = factionService.updateFaction(request)
+        return mapStruct.toFactionResponse(faction)
     }
 
     @GetMapping("/{code}")
-    fun getFaction (
-        code: String
+    override fun getFaction (
+        @PathVariable code: String
     ) : FactionResponse  {
         return factionService.getFaction(code)
             .let { mapStruct.toFactionResponse(it) }
     }
 
     @GetMapping
-    fun getFactions () : List<FactionResponse>  {
+    override fun getFactions () : List<FactionResponse>  {
         return factionService.getFactionsTree()
             .map { mapStruct.toFactionResponse(it) }
     }

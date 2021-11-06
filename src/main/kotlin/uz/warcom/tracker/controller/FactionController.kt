@@ -7,6 +7,6 @@ interface FactionController {
 
     fun createFaction (request: FactionRequest): FactionResponse
     fun updateFaction (request: FactionRequest): FactionResponse
-    fun getFaction (request: FactionRequest): FactionResponse
+    fun getFaction (code: String): FactionResponse
     fun getFactions (): List<FactionResponse>
 }
