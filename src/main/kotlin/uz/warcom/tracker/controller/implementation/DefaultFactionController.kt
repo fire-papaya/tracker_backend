@@ -11,8 +11,7 @@ import uz.warcom.tracker.service.FactionService
 @RestController
 @RequestMapping(
     value = ["/api/faction"],
-    produces = [MediaType.APPLICATION_JSON_VALUE],
-    consumes = [MediaType.APPLICATION_JSON_VALUE]
+    produces = [MediaType.APPLICATION_JSON_VALUE]
 )
 class DefaultFactionController
 constructor(

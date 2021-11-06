@@ -1,8 +1,14 @@
 package uz.warcom.tracker.api.tracker.model.request
 
 
-data class FactionRequest (
+class FactionRequest (
     var name: String = "",
-    var code: String = "",
-    var parentCode: String? = null
-)
+    code: String = "",
+    parentCode: String? = null
+) {
+    val code: String = code
+        get() = field.uppercase()
+
+    val parentCode: String? = parentCode
+        get() = field?.uppercase()
+}

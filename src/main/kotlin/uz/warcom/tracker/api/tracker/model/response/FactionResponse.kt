@@ -4,5 +4,5 @@ data class FactionResponse (
     var name: String = "",
     var code: String = "",
     var parent: FactionResponse? = null,
-    var children: List<FactionResponse> = emptyList()
+    var children: List<FactionResponse>? = null
 )
