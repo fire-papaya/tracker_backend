@@ -42,8 +42,6 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-kotlin:1.5.12")
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
     implementation("org.springdoc:springdoc-openapi-ui:1.5.12")
-    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-hateoas
-    implementation("org.springdoc:springdoc-openapi-hateoas:1.5.12")
     implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
     implementation("com.google.guava:guava:28.2-jre")
     implementation("org.jetbrains.kotlin:kotlin-reflect")

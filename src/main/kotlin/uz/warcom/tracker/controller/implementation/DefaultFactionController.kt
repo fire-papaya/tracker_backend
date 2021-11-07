@@ -2,7 +2,6 @@ package uz.warcom.tracker.controller.implementation
 
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import uz.warcom.tracker.api.tracker.configuration.ApiMapStructConverter
 import uz.warcom.tracker.api.tracker.model.request.FactionRequest
 import uz.warcom.tracker.api.tracker.model.response.FactionResponse
 import uz.warcom.tracker.controller.FactionController
