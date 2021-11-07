@@ -17,20 +17,9 @@ class FactionService
     private val factionsPersistence: FactionPersistenceService,
     private val mapStruct: ApiMapStructConverter
 ){
-
-    fun getFaction (hashId: UUID) : FactionResponse {
-        val faction = findFaction(hashId)
-        return getFaction(faction)
-    }
-
-    fun getFaction (id: Int) : FactionResponse {
-        val faction = findFaction(id)
-        return getFaction(faction)
-    }
-
     fun getFaction (code: String) : FactionResponse {
-        val faction = findFaction(code)
-        return getFaction(faction)
+        return searchFaction(code, getFactionsTree())
+            ?: throw ResourceNotFoundException(code, Faction::class)
     }
 
     @Transactional
