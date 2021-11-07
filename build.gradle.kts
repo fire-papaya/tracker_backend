@@ -17,6 +17,7 @@ group = "uz.warcom.tracker"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 var mapstructVersion = "1.4.2.Final"
+extra["springCloudVersion"] = "2020.0.4"
 
 repositories {
     mavenCentral()
@@ -53,6 +54,12 @@ dependencies {
     implementation ("org.mapstruct:mapstruct:${mapstructVersion}")
     kapt ("org.mapstruct:mapstruct-processor:${mapstructVersion}")
     kapt ("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
 }
 
 tasks.withType<KotlinCompile> {
