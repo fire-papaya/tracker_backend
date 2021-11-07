@@ -16,7 +16,7 @@ class Faction: DefaultIntEntity() {
     @JoinColumn(name = "parent_id")
     var parent: Faction? = null
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent", targetEntity = Faction::class)
     @Fetch(FetchMode.JOIN)
     var children: List<Faction>? = null
 }

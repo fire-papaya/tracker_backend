@@ -19,12 +19,12 @@ class FactionPersistenceService (
         return factionRepository.findAllByParentIsNull()
     }
 
-    @CacheEvict(CacheConfig.FACTIONS)
+    @CacheEvict(CacheConfig.FACTIONS, allEntries = true)
     fun save (faction: Faction): Faction {
         return factionRepository.save(faction)
     }
 
-    @CacheEvict("factions")
+    @CacheEvict(CacheConfig.FACTIONS, allEntries = true)
     fun delete (faction: Faction) {
         factionRepository.delete(faction)
     }
