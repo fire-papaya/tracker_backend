@@ -10,6 +10,7 @@ plugins {
     kotlin("plugin.spring") version "1.5.21"
     kotlin("plugin.jpa") version "1.5.21"
     kotlin("kapt") version "1.5.21"
+    kotlin("plugin.allopen") version "1.5.21"
 }
 
 group = "uz.warcom.tracker"
@@ -19,6 +20,11 @@ var mapstructVersion = "1.4.2.Final"
 
 repositories {
     mavenCentral()
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
 }
 
 dependencies {
