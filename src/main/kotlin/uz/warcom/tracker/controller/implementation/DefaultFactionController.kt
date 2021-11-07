@@ -15,24 +15,21 @@ import uz.warcom.tracker.service.FactionService
 )
 class DefaultFactionController
 constructor(
-    private val factionService: FactionService,
-    private val mapStruct: ApiMapStructConverter
+    private val factionService: FactionService
 ): FactionController {
 
     @PostMapping
     override fun createFaction (
         @RequestBody request: FactionRequest
     ) : FactionResponse {
-        val faction = factionService.createFaction(request)
-        return mapStruct.toFactionResponse(faction)
+        return factionService.createFaction(request)
     }
 
     @PutMapping
     override fun updateFaction (
         @RequestBody request: FactionRequest
     ) : FactionResponse {
-        val faction = factionService.updateFaction(request)
-        return mapStruct.toFactionResponse(faction)
+        return factionService.updateFaction(request)
     }
 
     @GetMapping("/{code}")
@@ -40,12 +37,10 @@ constructor(
         @PathVariable code: String
     ) : FactionResponse  {
         return factionService.getFaction(code)
-            .let { mapStruct.toFactionResponse(it) }
     }
 
     @GetMapping
     override fun getFactions () : List<FactionResponse>  {
         return factionService.getFactionsTree()
-            .map { mapStruct.toFactionResponse(it) }
     }
 }
