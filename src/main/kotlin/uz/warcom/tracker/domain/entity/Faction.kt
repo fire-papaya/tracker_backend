@@ -1,5 +1,7 @@
 package uz.warcom.tracker.domain.entity
 
+import org.hibernate.annotations.Fetch
+import org.hibernate.annotations.FetchMode
 import javax.persistence.*
 
 @Entity
@@ -15,5 +17,6 @@ class Faction: DefaultIntEntity() {
     var parent: Faction? = null
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+    @Fetch(FetchMode.JOIN)
     var children: List<Faction>? = null
 }
